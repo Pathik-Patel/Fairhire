@@ -279,6 +279,7 @@ def generate_unique_token():
             return token
 
 def complaint(request):
+
     if request.method == 'GET':
         # logged_user_details = userloggedin(request)
         # if(logged_user_details["userid"] == ""):
@@ -301,18 +302,26 @@ def complaint(request):
         
         try:
         # complaint = Complaints.objects.get(pk=complaint_id)
+            
             staff_users = User.objects.filter(role='Staff')
             complaints_count = {}
+            
             for user in staff_users:
+                
                 complaints_count[user.userid] = Complaints.objects.filter(
                     assigniduserid=user.userid).count()
 
+                
                 min_complaints = min(complaints_count.values())
+                
                 least_complaints_users = [
                     userid for userid, count in complaints_count.items() if count == min_complaints]
+                
                 assigned_user_id = least_complaints_users[randint(
                     0, len(least_complaints_users)-1)]
-                assigned_user = User.objects.get(email=assigned_user_id)
+                print(assigned_user_id)
+                assigned_user = User.objects.get(userid=assigned_user_id)
+                print("Hello")
             unique_token = generate_unique_token()
             # print(unique_token)
             # complaint.save()
@@ -353,7 +362,7 @@ def complaint(request):
             send_email(request,unique_token)
             
             return render(request, "complaint.html", {"context": context})
-        except assigned_user.DoesNotExist:
+        except :
            
             return JsonResponse({'messages': "Please try after some time"})
 
@@ -377,9 +386,10 @@ def searched_Complain(request):
     print(data)
     return JsonResponse({'complaints': data})
 
-
+import smtplib
 def send_email(request,unique_token):
 
+   
     email =request.POST['email']
     type_of_disability = request.POST["type_of_disability"]
     company = request.POST["company"]
@@ -387,29 +397,12 @@ def send_email(request,unique_token):
     message = message = "This email is to notify you that the complaint of " + type_of_disability + \
     " you filed against the company " + company + " has been filed on date " + date + ".\n" + \
     "To follow the progress of your complaint, please use the following unique token: " + unique_token + "."
-
-
+    print(message, email)
+    server = smtplib.SMTP('smtp.gmail.com',587)
+    server.starttls()
+    server.login("fairhire901@gmail.com", "thtpeydvtjzfglpt")
+    server.sendmail("fairhire901@gmail.com", email, message)
     
-    if request.method == "POST":
-        try:
-            with get_connection(
-                host=settings.EMAIL_HOST,
-                port=settings.EMAIL_PORT,
-                username=settings.EMAIL_HOST_USER,
-                password=settings.EMAIL_HOST_PASSWORD,
-                use_tls=settings.EMAIL_USE_TLS
-            ) as connection:
-                subject = "Complaint confirmation."
-                email_from = settings.EMAIL_HOST_USER
-                recipient_list = [email, ]
-                message = message
-                EmailMessage(subject, message, email_from,
-                             recipient_list, connection=connection).send()
-            print(unique_token)
     
-            return JsonResponse({'message': 'This endpoint only accepts POST requests.'})
-        except SMTPException:
-            print("data")
-            return JsonResponse({'messages': "Please try after some time"})
-    else:
-        return  JsonResponse({'message': 'This endpoint only accepts POST requests.'})
+    
+    

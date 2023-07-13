@@ -82,15 +82,13 @@ WSGI_APPLICATION = 'fairhire.wsgi.application'
 
 DATABASES = {
    'default': {
-    'ENGINE': 'django.db.backends.mysql',
-    'NAME': 'fairhire',
-    'USER': 'root',
-    'PASSWORD': '',
-    'HOST': 'localhost',
-    'PORT': '',
-    'OPTIONS': {
-    'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-    }
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'railway',
+    'USER': 'postgres',
+    'PASSWORD': 'ufxPxyhlmFtMsphjYP0C',
+    'HOST': 'containers-us-west-125.railway.app',
+    'PORT': '7741',
+    
     }
 }
 
