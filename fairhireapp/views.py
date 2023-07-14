@@ -345,7 +345,7 @@ def chat_request(request):
         userid for userid, count in chat_count.items() if count == min_chat]
     assigned_user_id = least_chat_users[randint(
         0, len(least_chat_users)-1)]
-    assigned_user = User.objects.get(email=assigned_user_id)
+    assigned_user = User.objects.get(userid=assigned_user_id)
 
     chat_room = ChatRoom.objects.create(
         assigned_to=assigned_user, requester=current_user)
