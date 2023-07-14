@@ -136,6 +136,7 @@
         function updateMessages(chatRoomId) {
             $.get('/get_messages/' + chatRoomId, function (data) {
                 var messagesDiv = $('#messages');
+                
                 messagesDiv.empty(); // clear the messages div
 
                 var messages = data.messages;
