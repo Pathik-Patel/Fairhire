@@ -23,5 +23,6 @@
         "src": "/(.*)",
         "dest": "fairhire/wsgi.py"
       }
-    ]
+    ],
+    "outputDirectory": "static"
   }
