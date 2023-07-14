@@ -24,6 +24,6 @@
         "dest": "fairhire/wsgi.py"
       }
     ]
+    // Hello
     // "outputDirectory": "staticfiles_build"
-    
   }
