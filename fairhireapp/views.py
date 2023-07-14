@@ -2,30 +2,15 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import EmailMessage, get_connection
 from django.conf import settings
 from django.db.models import Q
-from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseBadRequest
-from datetime import datetime
 from random import randint
 from fairhireapp.backend import userloggedin
-# from django.views.generic import TemplateView
 from django.db.models import Count
-# from .models import PasswordReset
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes
-from django.urls import reverse_lazy
-from django.contrib import messages
-from django.contrib.auth import login
-from django.contrib.auth.tokens import default_token_generator
-# from django.contrib.auth.models import User
 from fairhireapp.models import Complaints, User, ChatMessage, ChatRoom
-# from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
-from django.urls import reverse
-import requests
 import openai
 from django.shortcuts import render
 from django.http import JsonResponse
-
 from django.shortcuts import redirect
 
 # user=User.objects.get()

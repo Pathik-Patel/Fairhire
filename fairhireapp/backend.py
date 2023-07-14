@@ -1,19 +1,14 @@
-from django.db.models import Count
+
 from random import randint
 import random
 import string
 from django.http import JsonResponse
 from django.shortcuts import render
-# from product_analysis.models import Caps, Decoration, Material, Shape, platforms, user, files, Formats
-from fairhireapp.models import Complaints, User, User_Logged
+from fairhireapp.models import Complaints, User
 from django.db.models import Q
 from django.shortcuts import redirect
-import json
 from rest_framework.decorators import api_view
-from django.core.files.storage import FileSystemStorage
 from django.conf import settings
-import os
-from smtplib import SMTPException
 from django.core.mail import EmailMessage, get_connection
 
 # Thigs we store in sessions = userid, user_logged_in, loggedin_user

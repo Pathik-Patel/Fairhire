@@ -1,9 +1,5 @@
-import string
 from django.core.validators import MinLengthValidator
-import random
 from django.db import models
-from datetime import timedelta
-from django.utils import timezone
 class User(models.Model):
     userid = models.CharField(primary_key = True, max_length=100)
     email = models.EmailField(null=True)
