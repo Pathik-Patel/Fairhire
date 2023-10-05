@@ -12,11 +12,11 @@ import openai
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.shortcuts import redirect
-
+import os
 # user=User.objects.get()
 
 # Set up the OpenAI API key and model
-openai.api_key = "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"
+openai.api_key = os.environ.get('API_KEY')
 model_engine = "text-davinci-003"
 
 
