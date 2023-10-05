@@ -16,7 +16,7 @@ from django.shortcuts import redirect
 # user=User.objects.get()
 
 # Set up the OpenAI API key and model
-openai.api_key = "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"
+openai.api_key = "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"
 model_engine = "text-davinci-003"
 
 
