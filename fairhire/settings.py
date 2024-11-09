@@ -81,11 +81,11 @@ WSGI_APPLICATION = 'fairhire.wsgi.application'
 DATABASES = {
    'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'railway',
-    'USER': 'postgres',
-    'PASSWORD': 'ufxPxyhlmFtMsphjYP0C',
-    'HOST': 'containers-us-west-125.railway.app',
-    'PORT': '7741',
+    'NAME': 'postgres',
+    'USER': 'postgres.ctnhixasejmocvpqbyax',
+    'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+    'HOST': 'aws-0-us-west-1.pooler.supabase.com',
+    'PORT': '6543',
     
     }
 }
